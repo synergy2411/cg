@@ -71,11 +71,11 @@
 
 // IIFE : for startup configuration & creating Scopes
 
-(
-    function(){
-        console.log("IIFE here!");
-    }
-)();
+// (
+//     function(){
+//         console.log("IIFE here!");
+//     }
+// )();
 
 // Lexical scoping
 // var x = 100;
@@ -183,20 +183,20 @@
 
     // Instance Method : implements inheritance
 
-    var Shoe = {
-        gender : 'Women',
-        size : 5,
-        construction : 'slipper'
-    }
+//     var Shoe = {
+//         gender : 'Women',
+//         size : 5,
+//         construction : 'slipper'
+//     }
 
-    var magicShoe = Object.create(Shoe);
-    magicShoe.size = 8;
+//     var magicShoe = Object.create(Shoe);
+//     magicShoe.size = 8;
 
-console.log(Shoe.hasOwnProperty('gender'));        //?
-console.log(magicShoe.isPrototypeOf(Shoe));
-console.log(Shoe.isPrototypeOf(magicShoe));
-console.log(Object.prototype.isPrototypeOf(Shoe));
-console.log(Object.prototype.isPrototypeOf(magicShoe));
+// console.log(Shoe.hasOwnProperty('gender'));        //?
+// console.log(magicShoe.isPrototypeOf(Shoe));
+// console.log(Shoe.isPrototypeOf(magicShoe));
+// console.log(Object.prototype.isPrototypeOf(Shoe));
+// console.log(Object.prototype.isPrototypeOf(magicShoe));
 
 
 
@@ -210,4 +210,57 @@ console.log(Object.prototype.isPrototypeOf(magicShoe));
 
 
 
+// PROTOTYPING : Extending String Constructor
 
+// var str1 = "Welcome to JavaScript";
+// var str2 = "I Love NodeJS";
+
+// String.prototype.countLetter = function(letter){
+//     var counter = 0;
+//     for(var i =0; i< this.length; i++){
+//         if(this.charAt(i).toUpperCase() === letter.toUpperCase()){
+//             counter++;
+//         }
+//     }
+//     return counter;
+// }
+
+// console.log("Occurance : " , str1.countLetter("e"));
+// console.log("Occurance : " , str2.countLetter("O"));
+
+
+
+
+//Closures : process of binding outer scope variable deep inside the function factory
+
+// function testClosure(){
+//     var x = 4;
+
+//     return function(){
+//         return ++x;
+//     }
+// }
+
+// var nestedFunc = testClosure();
+// console.log(nestedFunc());
+// console.log(nestedFunc());              
+// console.log(nestedFunc());              
+// console.log(nestedFunc());              
+// console.log(nestedFunc());     
+
+
+function buildTicket(transport){
+    var numOfPass = 0;
+    return function(name){
+        return "Hello " + name + "!\n" + 
+            "You are going via "+ transport + "\n" + 
+            "Your Ticket ID #"+ (++numOfPass); 
+    }
+}
+
+var ship = buildTicket("Ship");
+console.log(ship("Foo"));
+console.log(ship("Bar"));
+
+var car = buildTicket("Car");
+console.log(car("Baz"));
