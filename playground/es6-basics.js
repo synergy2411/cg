@@ -42,21 +42,26 @@
 
 // PROMISES
 
-// var promise = new Promise((resolve, reject) => {
-//     setTimeout(()=>{
-//         reject(new Error("Something Bad Happened!"));
-//     }, 2000);
-//     // setTimeout(() => {
-//     //     resolve("Promise resolved Successfully")
-//     // }, 3000)
-// })
+var promise = new Promise((resolve, reject) => {
+    // setTimeout(()=>{
+    //     reject(new Error("Something Bad Happened!"));
+    // }, 2000);
+    setTimeout(() => {
+        resolve("Promise resolved Successfully")
+    }, 3000)
+})
 
 
-// promise.then(response => {
-//     console.log("[RESPONSE] ", response)
-// }, err => {
-//     console.log("[ERROR]", err);
-// })
+promise.then(response => {
+    console.log("[RESPONSE] ", response)
+    return response + "\n New Line";
+}, err => {
+    console.log("[ERROR]", err);
+}).then(res => {
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+})
 
 
 // function delay(ms){
@@ -170,3 +175,15 @@ love
 
 ${fruit}!`);
 
+// class Student{
+//     constructor(fname, lname){
+//         this.fname = fname;
+//         this.lname = lname;
+//     }
+//     getName () {
+//         return this.fname + " " + this.lname;
+//     }
+// }
+
+// let foo = new Student("Foo", "Bar");
+// console.log(foo.getName());
