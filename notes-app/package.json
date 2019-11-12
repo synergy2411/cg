@@ -1,6 +1,6 @@
 {
-  "name": "notes-app",
-  "version": "1.0.0",
+  "name": "cg-notes-app",
+  "version": "2.0.0",
   "description": "My Awesome notes app",
   "main": "app.js",
   "scripts": {
@@ -11,5 +11,6 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "yargs": "^14.2.0"
-  }
+  },
+  "keywords": []
 }
