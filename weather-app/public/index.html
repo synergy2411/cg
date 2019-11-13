@@ -44,10 +44,13 @@
             fetch("/weather?txtAddress="+address)
                 .then(response => response.json())
                 .then(resp => {
-                    console.log(resp);
+                    console.log("[RESP]", resp);
                     showMessage.innerHTML = resp.message;
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    console.log(err);
+                    showMessage.innerHTML = err.error;
+                });
         }
     </script>
 

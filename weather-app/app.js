@@ -1,16 +1,31 @@
 const express = require("express");
+const geocoder = require("./utils/geocoder");
+const forecast = require("./utils/forecast");
+
 const app = express();
 
 app.get("/", (request, response) => {
     // response.send({message : "Hello Client"});
-    response.sendFile(__dirname+"/public/index.html")
+    response.sendFile(__dirname + "/public/index.html")
 })
 
 app.get("/weather", (request, response) => {
-    if(request.query){
-        console.log("Address : ", request.query.txtAddress)
+    if (request.query) {
+        geocoder.geocode(request.query.txtAddress, (err, {lat, lng, formatted_address}) => {
+            if (err) return response.send({ message: err });
+            
+            forecast.getWeather(lat, lng, (err, {summary, temperature})=>{
+                if (err) return response.send({ message: err });
+                else  return response.send({
+                    message : `
+                        Hello! At ${formatted_address}, the current temperature is ${temperature}F.
+                        It seems like ${summary}.
+                    `
+                })
+            })
+        })
     }
-    response.send({message : "API Hit"});
+    // response.send({ message: "API Hit" });
 })
 
 app.listen(9000, () => {
