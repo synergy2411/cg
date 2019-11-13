@@ -1,0 +1,7 @@
+Geo Google API
+--------------
+https://maps.googleapis.com/maps/api/geocode/json?address=mumbai&key=AIzaSyAOIA3C43yp1OJPtEIMVNmdWpc_v5ecXx0
+
+Darknet API
+--------------
+https://api.darksky.net/forecast/473fe696d21e65026547b2d50b56014c/lat,lng
