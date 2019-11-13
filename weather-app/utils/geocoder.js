@@ -3,7 +3,8 @@ const request = require("request");
 const geocode = (address, cb) => {
     request({
         url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAOIA3C43yp1OJPtEIMVNmdWpc_v5ecXx0`,
-        json: true
+        json: true,
+        rejectUnauthorized : false
     }, (error, response, body) => {
         if (error) cb(error)
         if (body.status === "OK") {

@@ -9,43 +9,40 @@
 <body>
 
     <div class="container">
-        <div class="jumbotron">
-            <h1 class="text-center text-primary">
-                Share Your Location, Know Your Weather
-            </h1>
-        </div>
+        <h1 class="display-3 text-center text-primary">
+            Share Your Location, Know Your Weather
+        </h1>
         <br>
         <form class="well">
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-8 col-md-8">
-                        <input type="text" 
-                            name="txtAddress" 
-                            id="txtAddress" 
-                            placeholder="Share your location"
+                        <input type="text" name="txtAddress" id="txtAddress" placeholder="Share your location"
                             class="form-control">
                     </div>
                     <div class="col-sm-3 col-md-3 col-offset-sm-1 col-offset-md-1">
-                        <button class="btn btn-primary btn-block" 
-                            onclick="showWeather(event)">
+                        <button class="btn btn-outline-primary btn-block" onclick="showWeather(event)">
                             Show Weather</button>
                     </div>
                 </div>
             </div>
         </form>
-        <div id="showMessage" class="text-center text-primary"></div>
+        <div class="well">
+            <p id="showMessage" class="panel"></p>
+        </div>
+
     </div>
 
     <script>
-        function showWeather(event){
+        function showWeather(event) {
             const address = document.getElementById("txtAddress").value
             const showMessage = document.getElementById("showMessage");
             event.preventDefault();
-            fetch("/weather?txtAddress="+address)
+            fetch("/weather?txtAddress=" + address)
                 .then(response => response.json())
                 .then(resp => {
                     console.log("[RESP]", resp);
-                    showMessage.innerHTML = resp.message;
+                    showMessage.innerHTML = "<h3 class='display-5'>" + resp.message + "</h3>";
                 })
                 .catch(err => {
                     console.log(err);
