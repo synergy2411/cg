@@ -45,16 +45,21 @@
     <script>
 
         $(document).ready(() => {
-
+            let chatterName = prompt("Please enter your name...");
             const socket = io.connect("http://localhost:9090");
             socket.on("acknowledge", data => {
                 console.log("Server says : " + data.message);
             })
 
+            socket.on("MsgToClient", ({chatterName, message}) => {
+                $("#taMsg").append(chatterName + " : " + message + "\n");
+                console.log(chatterName + " : " + message);
+            })
+
             $("#btnSend").on("click", event => {
                 event.preventDefault();
                 let message = $("#txtMessage").val();
-                socket.emit("MsgToServer", { message });
+                socket.emit("MsgToServer", { message, chatterName });
                 $("#txtMessage").val('');
             })
 
