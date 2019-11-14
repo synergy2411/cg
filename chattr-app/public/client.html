@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chattr App</title>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <p class="display-4 text-center">Chattr App</p>
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3">
+                        <textarea name="txtMsg" id="taMsg" cols="30" rows="10" readonly class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8">
+                                <input type="text" placeholder="share your thoughts..." id="txtMessage"
+                                    class="form-control">
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <button id="btnSend" class="btn btn-outline-dark btn-block">SEND</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+
+        $(document).ready(() => {
+
+            const socket = io.connect("http://localhost:9090");
+            socket.on("acknowledge", data => {
+                console.log("Server says : " + data.message);
+            })
+
+            $("#btnSend").on("click", event => {
+                event.preventDefault();
+                let message = $("#txtMessage").val();
+                socket.emit("MsgToServer", { message });
+                $("#txtMessage").val('');
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>
