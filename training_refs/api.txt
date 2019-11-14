@@ -4,4 +4,12 @@ https://maps.googleapis.com/maps/api/geocode/json?address=mumbai&key=AIzaSyAOIA3
 
 Darknet API
 --------------
-https://api.darksky.net/forecast/473fe696d21e65026547b2d50b56014c/lat,lng
+https://api.darksky.net/forecast/473fe696d21e65026547b2d50b56014c/${lat},${lng}
+
+
+mongodb://scott:tiger123@ds029817.mlab.com:29817/cg_db
+
+
+
+
+npm install mongodb express --save
