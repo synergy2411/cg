@@ -27,7 +27,6 @@ io.on("connection", client =>{
     })
 })
 
-
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/client.html");
 })
